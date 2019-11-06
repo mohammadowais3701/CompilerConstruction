@@ -1,0 +1,6 @@
+public class A : B{
+int a ;
+int fn(){
+a=2;
+}
+}

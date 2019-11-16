@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8495d598-4649-42d0-aeba-db44d88337ec" name="Default Changelist" comment="" />
+    <list default="true" id="8495d598-4649-42d0-aeba-db44d88337ec" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CFGS1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../CFGS1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../First and Follow Set .docx" beforeDir="false" afterPath="$PROJECT_DIR$/../First and Follow Set .docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/CC1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/CC1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/LexSyntax.py" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/LexSyntax.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/Token.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/Token.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Compiler/inputfile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Compiler/inputfile.txt" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +24,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1T3NAFO31iGgxDWL9zlWleuxPy2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -28,7 +44,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.LexSyntax">
     <configuration name="CC1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="programs" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -94,8 +110,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.LexSyntax" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.CC1" />
       </list>
     </recent_temporary>
@@ -112,5 +128,18 @@
       <updated>1572684678476</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

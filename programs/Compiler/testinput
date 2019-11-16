@@ -1,0 +1,27 @@
+
+public class A : B{
+int a,b;
+public a fn()
+{}
+
+public a fn()
+{}
+
+public a fn()
+{}
+}
+public class A {
+int a,b;
+public a fn()
+{}
+
+public a fn()
+{}
+
+public a fn()
+{}
+
+}public class A : B{
+int a,b;
+
+}

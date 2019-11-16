@@ -100,26 +100,39 @@ def ASSIGN():
 def CLASSDEF():
     global i
    # print(TS[i].getTokens()[1])
+
     if(TS[i].getTokens()[0]=='AM'):
+
+
 
         if(AM()):
 
+
             if(TS[i].getTokens()[0]=='class'):
+
 
                 i=i+1
 
                 if(TS[i].getTokens()[0]=='ID'):
+
                     i=i+1
+
 
                     if(INH()):
 
 
                         if(TS[i].getTokens()[1]=='{'):
                             i=i+1
+
                             if(CLASS_BODY()):
+
                                 if(TS[i].getTokens()[1]=='}'):
                                     i=i+1
+
                                     return True
+                    else:
+                        i=i-3
+
     return False
 
 def OPT():
@@ -146,9 +159,16 @@ def OPT2():
         return True
     return False
 def P():
+    global i
     if(TS[i].getTokens()[0]=='ID'):
-        if(PP2()):
+        i=i+1
+
+        if(P22()):
+
+
             return True
+
+    return True
     return False
 
 def P1():
@@ -162,19 +182,21 @@ def P1():
     return False
 
 def P22():
+
     if(TS[i].getTokens()[0]=='.'):
         if(P1()):
             return True
     return False
 def DT2():
     global i
-    if(TS[i].getTokens[0]=="DT" or TS[i].getTokens()[0]=='ID'):
+    if(TS[i].getTokens()[0]=='DT' or  TS[i].getTokens()[0]=='ID'):
         i=i+1
         return True
     return False
 
 def DT1():
     global i
+
     if(TS[i].getTokens()[0]=='['):
         i=i+1
         if(TS[i].getTokens()[0]==']'):
@@ -195,27 +217,28 @@ def DT1():
 
 def DT():
     global i
-    if(TS[i].getTokens[0]=="DT" or TS[i].getTokens()[0]=='ID'):
+    if(TS[i].getTokens()[0]=='DT' or TS[i].getTokens()[0]=='ID'):
         i=i+1
         if(DT1()):
             return True
     return False
 def Y1():
     global i
-    if(TS[i].getTokens[0]=="["):
+    if(TS[i].getTokens()[0]=="["):
         i=i+1
         if(OE()):
             if(OPT()):
                 return True
-    elif(TS[i].getTokens[0]=="," or TS[i].getTokens[0]==")"):
-        i=i+1
+    elif(TS[i].getTokens()[0]=="," or TS[i].getTokens()[0]==")"):
         return True
     return False
 def X1():
     global i
-    if(TS[i].getTokens[0]=="ID"):
+
+    if(TS[i].getTokens()[0]=='ID'):
         i=i+1
         if(Y1()):
+
             return True
     return False
 
@@ -235,12 +258,18 @@ def ARRAYDEC1():
 
 def OBJ1():
     global i
+
+
     if(TS[i].getTokens()[0]=='ID'):
-        i=i+1
+
         if(TS[i].getTokens()[0]=='ID'):
             i=i+1
+
             if(TS[i].getTokens()[1]=='='):
+
                 i=i+1
+
+
                 if(TS[i].getTokens()[1]=='new'):
                     i=i+1
                     if(DT()):
@@ -252,51 +281,214 @@ def OBJ1():
                                     if(TS[i].getTokens()[1]==';'):
                                         i=i+1
                                         return True
+                else:
+                    i=i-2
+
+    return False
+def SST13():
+    global i
+    if (TS[i].getTokens()[0] == '['):
+        i = i + 1
+        if(TS[i].getTokens()[0] == ']'):
+            i=i+1
+
+        if (SST12()):
+            return True
+    elif (TS[i].getTokens()[0] == 'ID'):
+        if (SST7()):
+            return True
+    return False
+def SST12():
+    global i
+
+    if (TS[i].getTokens()[0] == 'ID' or TS[i].getTokens()[0] == 'integer_const' or TS[i].getTokens()[0] == 'INC/DEC' or TS[i].getTokens()[0] == '(' or TS[i].getTokens()[0] == 'not' or TS[i].getTokens()[0] == 'this' or TS[i].getTokens()[0] == 'super'):
+
+        if (OE()):
+
+            if (M1()):
+
+                return True
+    elif (TS[i].getTokens()[0] == 'new'):
+        if (DT()):
+            if(TS[i].getTokens()[0] == '('):
+                i=i=1
+                if(ARGS2()):
+                    if(TS[i].getTokens()[0] == ')'):
+                        i=i+1
+                        return True
+
     return False
 
+def SST11():
+    global i
+    if (TS[i].getTokens()[0] == 'ID' or TS[i].getTokens()[0] == 'integer_const' or TS[i].getTokens()[0] == 'INC/DEC' or TS[i].getTokens()[0] == '(' or TS[i].getTokens()[0] == 'not' or TS[i].getTokens()[0] == 'this' or TS[i].getTokens()[0] == 'super'):
+        if (E()):
+            if (TS[i].getTokens()[0] == ']'):
+                i = i + 1
+                if (OPT()):
+                    if (TS[i].getTokens()[0] == 'ID'):
+                        i = i + 1
+                        if (OPT2()):
+                            return True
+    elif (TS[i].getTokens()[0] == ']'):
+        if (SST13()):
+            return True
+    return False
+def SST10():
+    global i
 
+    if(TS[i].getTokens()[0] == 'AOP'):
+        i=i+1
+
+        if(SST12()):
+
+            return True
+
+    elif(TS[i].getTokens()[0] == ','):
+        if(M1()):
+            return True
+    elif(TS[i].getTokens()[0] == '.'):
+        if(P22()):
+            if(TS[i].getTokens()[0] == 'AOP'):
+                i=i+1
+                if(Q()):
+                    if(TS[i].getTokens()[0] == '('):
+                        i=i+1
+                        if(ARGS2()):
+                            if(TS[i].getTokens()[0] == ')'):
+                                return True
+
+    return False
+def SST9():
+    global i
+    if(TS[i].getTokens()[0] == 'ID' or TS[i].getTokens()[0] == 'integer_const' or TS[i].getTokens()[0] == 'INC/DEC' or TS[i].getTokens()[0] == '(' or TS[i].getTokens()[0] == 'not' or TS[i].getTokens()[0] == 'this' or TS[i].getTokens()[0] == 'super'):
+        if(E()):
+            if(TS[i].getTokens()[0] == ']'):
+                i=i+1
+                if(OPT()):
+                    if(TS[i].getTokens()[0] == 'ID'):
+                        i=i+1
+                        if(OPT2()):
+                            return True
+    elif(TS[i].getTokens()[0] == ']'):
+        if(SST8()):
+            return True
+    return False
+def SST8():
+    global i
+    if (TS[i].getTokens()[0] == '['):
+        i = i + 1
+        if(TS[i].getTokens()[0] == ']'):
+            i=i+1
+            if(TS[i].getTokens()[0] == 'ID'):
+                i=i+1
+                if(M()):
+                    return True
+
+    elif (TS[i].getTokens()[0] == 'ID'):
+        if (M()):
+            return True
+    return False
+
+def SST7():
+    global i
+    if(TS[i].getTokens()[0] == '='):
+        if(SST12()):
+            if(TS[i].getTokens()[0] == ';'):
+                return True
+    elif(TS[i].getTokens()[0] == ',' or TS[i].getTokens()[0] == ';'):
+        if(M1()):
+            return True
+        elif(TS[i].getTokens()[0] == ';'):
+            return True
+    return False
+def SST3():
+    global i
+
+    if (TS[i].getTokens()[0] == '='):
+        i=i+1
+        if (TS[i].getTokens()[0] == 'new'):
+            i=i+1
+            if(DT()):
+                return True
+    elif(TS[i].getTokens()[0]=='.'):
+        if(P22()):
+            if(TS[i].getTokens()[0]=='AOP'):
+                i=i+1
+                if(Q()):
+                    return True
+    return False
 def SST2():
     global i
-    if(TS[i].getTokens()[0]=='DT' or TS[i].getTokens()[0]=='ID' or TS[i].getTokens()[1]=='['):
-        if(DT1()):
-            if(OBJ1()):
-                return True
-    elif(ARRAYDEC1()):
-        return True
-    return False
 
+   # if(TS[i].getTokens()[0]=='DT' or TS[i].getTokens()[0]=='ID' or TS[i].getTokens()[1]=='['): i=i+1  # im here if(DT1()): if(OBJ1()): return True elif(P()): if(TS[i].getTokens()[1]=='='): i=i+1 if(Q()): return True else: i=i-2 return False elif(TS[i].getTokens()[0]=='ID'): pass elif(ARRAYDEC1()): return True return False
+    if(TS[i].getTokens()[0]=='['):
+        i=i+1
+        if(SST11()):
+            return True
+    elif(TS[i].getTokens()[0]=='ID'):
+        i=i+1
+
+        if(SST10()):
+            return True
+    return False
 def SST1():
     global i
+
+
+
     if(TS[i].getTokens()[0]=='('):
+        i=i+1
         if(ARGS2()):
             if(TS[i].getTokens()[1]==')'):
                 i=i+1
                 if(TS[i].getTokens()[1]==';'):
                     i=i+1
+
                     return True
     elif(TS[i].getTokens()[0]=='ID'):
         i=i+1
-        if(OBJ1()):
-            return True
+        if(SST7()):
+            if (TS[i].getTokens()[1] == ';'):
+                i = i + 1
+                return True
+
+
+       # if(OBJ1()):return True elif (TS[i].getTokens()[1] == '='):i=i+1if(Q()):return True elif(TS[i].getTokens()[1] == '('):if(SST1()):return True
     elif(TS[i].getTokens()[0]=='['):
-        if(ARRAYDEC1()):
-            return True
+        if(SST9()):
+            if (TS[i].getTokens()[1] == ';'):
+                i = i + 1
+                return True
     elif(TS[i].getTokens()[1]=='.'):
         if(P22()):
-            return True
+            if (TS[i].getTokens()[0] == 'AOP'):
+                i = i + 1
+                if(Q()):
+                    if (TS[i].getTokens()[1] == ';'):
+                        i = i + 1
+                        return True
     return False
 
 def SST():
     global i
-    if(TS[i].getTokens()[1]=='static' or TS[i].getTokens()[1]=='public' or TS[i].getTokens()[1]=='private' or TS[i].getTokens()[1]=='protected'):
-        if(DEC()):
-            return True
-    elif(TS[i].getTokens()[0]=='ID'):
+
+
+    if(TS[i].getTokens()[0]=='ID'):
+        i=i+1
         if(SST1()):
+
             return True
     elif(TS[i].getTokens()[0]=='DT'):
+        i=i+1
+
         if(SST2()):
+
+
             return True
+       # elif(FUNC_DEF()):
+
+          #  return True
     elif(TS[i].getTokens()[1]=='floop'):
         if(FORLOOP()):
             return True
@@ -306,23 +498,52 @@ def SST():
     elif(TS[i].getTokens()[1]=='if'):
         if(IF_ST()):
             return True
-    elif(TS[i].getTokens()[1]=='++' or TS[i].getTokens()[1]=='--' ):
-        if(INC_DEC()):
+    elif(TS[i].getTokens()[0]=='INC/DEC' ):
+        if(INCDEC()):
             return True
+    return False
 def MST():
     global i
+
     if(TS[i].getTokens()[1]=='static' or TS[i].getTokens()[1]=='public' or TS[i].getTokens()[1]=='private' or TS[i].getTokens()[1]=='protected'):
+
         if(SST()):
+
             if(MST()):
                 return True
     elif(TS[i].getTokens()[0]=='ID'):
+
         if(SST()):
-            if(MST()):
-                return True
+
+            if (TS[i].getTokens()[0] == ';'):
+
+                i = i + 1
+
+
+                if(MST()):
+                        return True
+                else:
+                    return True
     elif(TS[i].getTokens()[0]=='DT'):
+
         if(SST()):
-            if(MST()):
+
+            if(TS[i].getTokens()[0]==';'):
+
+
+                i=i+1
+
+
+                if(MST()):
+
+                    return True
+                else:
+
+
+                    return True
+            else:
                 return True
+
     elif(TS[i].getTokens()[1]=='floop'):
         if(SST()):
             if(MST()):
@@ -340,17 +561,22 @@ def MST():
             if(MST()):
                 return True
     elif(TS[i].getTokens()[1]=='}'):
-        i=i+1
         return True
+    else:
+       return False
 
 def ARGS():
     global i
-    if(TS[i].getTokens()[0]=='('):
-        i=i+1
+
+    if(TS[i].getTokens()[0]==')'):
         return True
-    elif(TS[i].getTokens()[0]=='ID' or  TS[i].getTokens()[0]=='ID'):
-        i=i+1
-        return True
+    elif(TS[i].getTokens()[0]=='DT' or  TS[i].getTokens()[0]=='ID'):
+        if(DT()):
+            if(X1()):
+
+               if(NEXT()):
+
+                    return True
     return False
 
 
@@ -361,9 +587,11 @@ def AM():
 
         i=i+1
         return True
+
     return False
 def CONSTRUCTOR_CALLING():
     global i
+
     if(TS[i].getTokens()[0]=="super"):
         i=i+1
         if(TS[i].getTokens()[0]=="("):
@@ -384,8 +612,7 @@ def CONSTRUCTOR_CALLING():
                     if(TS[i].getTokens()[0]==";"):
                         i=i+1
                         return True
-    elif(TS[i].getTokens()[1]=="static" or TS[i].getTokens()[1]=="public" or TS[i].getTokens()[1]=="private" or TS[i].getTokens()[1]=="protected" or TS[i].getTokens()[1]=="ID" or TS[i].getTokens()[1]=="DT" or TS[i].getTokens()[1]=="floop" or TS[i].getTokens()[1]=="wloop" or TS[i].getTokens()[1]=="if" or TS[i].getTokens()[1]=="++" or TS[i].getTokens()[1]=="--"):
-        i=i+1
+    elif(TS[i].getTokens()[1]=="static" or TS[i].getTokens()[0]=="AM" or TS[i].getTokens()[0]=="ID" or TS[i].getTokens()[0]=="DT" or TS[i].getTokens()[0]=="floop" or TS[i].getTokens()[0]=="wloop" or TS[i].getTokens()[0]=="if" or TS[i].getTokens()[0]=="INC/DEC" ):
         return True
     return False
 
@@ -411,9 +638,12 @@ def CONSTRUCTOR():
 
 def OBJ():
     global i
+
     if(TS[i].getTokens()[0]=="DT" or TS[i].getTokens()[0]=="ID"):
         if(DT()):
+
             if(TS[i].getTokens()[0]=="ID"):
+
                 i=i+1
                 if(TS[i].getTokens()[0]=="AOP"):
                     i=i+1
@@ -426,6 +656,10 @@ def OBJ():
                                     if(TS[i].getTokens()[0]==")"):
                                         i=i+1
                                         return True
+            else:
+                i=i-1
+
+
     return False
 
 
@@ -558,13 +792,14 @@ def T1():
 def T():
     global i
     if(TS[i].getTokens()[0]=="ID" or regex.integerConstant(TS[i].getTokens()[1])=="integer_const" or TS[i].getTokens()[0]=="INC/DEC" or TS[i].getTokens()[0]=="NOT" or TS[i].getTokens()[0]=="this" or TS[i].getTokens()[0]=="super" ):
-        i=i+1
+
         if(F()):
             if(T1()):
                 return True
     return False
 def X():
     global i
+    print(TS[i].getTokens()[0])
     if(TS[i].getTokens()[0]=="PM" ):
         i=i+1
         if(T()):
@@ -579,7 +814,7 @@ def X():
 def E():
     global i
     if(TS[i].getTokens()[0]=="ID" or regex.integerConstant(TS[i].getTokens()[1])=="integer_const" or TS[i].getTokens()[0]=="INC/DEC" or TS[i].getTokens()[0]=="NOT" or TS[i].getTokens()[0]=="this" or TS[i].getTokens()[0]=="super" ):
-        i=i+1
+
         if(T()):
             if(X()):
                 return True
@@ -601,8 +836,9 @@ def RE1():
 def RE():
     global i
     if(TS[i].getTokens()[0]=="ID" or regex.integerConstant(TS[i].getTokens()[1])=="integer_const" or TS[i].getTokens()[0]=="INC/DEC" or TS[i].getTokens()[0]=="NOT" or TS[i].getTokens()[0]=="this" or TS[i].getTokens()[0]=="super" ):
-        i=i+1
+
         if(E()):
+
             if(RE1()):
                 return True
     return False
@@ -624,7 +860,7 @@ def AE1():
 def AE():
     global i
     if(TS[i].getTokens()[0]=="ID" or regex.integerConstant(TS[i].getTokens()[1])=="integer_const" or TS[i].getTokens()[0]=="INC/DEC" or TS[i].getTokens()[0]=="NOT" or TS[i].getTokens()[0]=="this" or TS[i].getTokens()[0]=="super" ):
-        i=i+1
+
         if(RE()):
             if(AE1()):
                 return True
@@ -645,14 +881,25 @@ def OE1():
 
 def OE():
     global i
+
     if(TS[i].getTokens()[0]=="ID" or regex.integerConstant(TS[i].getTokens()[1])=="integer_const" or TS[i].getTokens()[0]=="INC/DEC" or TS[i].getTokens()[0]=="NOT" or TS[i].getTokens()[0]=="this" or TS[i].getTokens()[0]=="super" ):
-        i=i+1
+
+
         if(AE()):
+
             if(OE1()):
                 return True
+        elif(TS[i].getTokens()[0]==';'):
+            i=i+1
+
+
+
+            return True
+
     return False
 def M1():
     global i
+
     if(TS[i].getTokens()[1]==','):
         i=i+1
         if(TS[i].getTokens()[0]=='ID'):
@@ -678,10 +925,22 @@ def M():
 
 def NEXT2():
     global i
+
+
     if(TS[i].getTokens()[0]=="," ):
         i=i+1
+
         if(OE()):
-            if(NEXT2()):
+
+            if(TS[i].getTokens()[0]==';'):
+                i=i+1
+                return True
+            elif(NEXT2()):
+
+                return True
+            elif(MST()):
+
+
                 return True
     elif(TS[i].getTokens()[0]==")" ):
         i=i+1
@@ -689,18 +948,21 @@ def NEXT2():
     return False
 def NEXT():
     global i
+
     if(TS[i].getTokens()[0]==","):
-        if(DT2()):
+        i=i+1
+        if(DT()):
+
             if(X1()):
                 if(NEXT()):
                     return True
     elif(TS[i].getTokens()[0]==")"):
-        i=i+1
         return True
     return False
 
 def ARGS2():
     global i
+
     if(TS[i].getTokens()[0]=="ID" or regex.integerConstant(TS[i].getTokens()[1])=="integer_const" or TS[i].getTokens()[0]=="INC/DEC" or TS[i].getTokens()[0]=="NOT" or TS[i].getTokens()[0]=="this" or TS[i].getTokens()[0]=="super" ):
         if(OE()):
             if(NEXT2()):
@@ -711,17 +973,24 @@ def ARGS2():
 
 def CLASS_BODY3():
     global i
+
     if(TS[i].getTokens()[0]=="ID"):
         i=i+1
         if(CLASS_BODY1()):
             return True
     elif(TS[i].getTokens()[0]=="("):
+        i=i+1
         if(ARGS()):
+
+
             if(TS[i].getTokens()[0]==")"):
                 i=i+1
+
                 if(TS[i].getTokens()[0]=="{"):
                     i=i+1
+
                     if(CONSTRUCTOR_CALLING()):
+
                         if(MST()):
                             if(TS[i].getTokens()[0]=="}"):
                                 i=i+1
@@ -732,20 +1001,30 @@ def CLASS_BODY3():
 
 def CLASS_BODY2():
     global i
+
     if(TS[i].getTokens()[0]=="DT"):
         i=i+1
+
         if(TS[i].getTokens()[0]=="ID"):
             i=i+1
+
             if(CLASS_BODY1()):
+
+                return True
+            elif(NEXT2()):
+
                 return True
     elif(TS[i].getTokens()[0]=="ID"):
         i=i+1
+
         if(CLASS_BODY3()):
+
             return True
     return False
 
 def CLASS_BODY1():
     global i
+
     if(TS[i].getTokens()[0]=="AOP"):
         if(TS[i].getTokens()[1]=="="):
             i=i+1
@@ -769,28 +1048,37 @@ def CLASS_BODY1():
 def defs():
     global i
 
-    if(TS[i].getTokens()[0]=="AM" or  TS[i].getTokens()[0]=='class'):
+    if(TS[i].getTokens()[0]=="AM" or TS[i].getTokens()[0]=='class'  ):
 
         if(CLASSDEF()):
 
 
+
             if(defs()):
+
                 return True
+
+        elif(TS[i].getTokens()[1]=='public'):
+            return True
+    elif( TS[i].getTokens()[0]=='$'):
+        return True
+
     return False
 
 def INH():
     global i
-    if(TS[i].getTokens()[0]==':' or  TS[i].getTokens()[0]=="ID"):
+
+    if(TS[i].getTokens()[0]==':'):
+
         i=i+1
 
         if(TS[i].getTokens()[0]=='ID' ):
-
-
-
-            
-            print(TS[i].getTokens()[0])
-
+            i=i+1
             return True
+    elif(TS[i].getTokens()[0]=='{' ):
+        return  True
+
+
     return False
 def DEC():
     global i
@@ -807,56 +1095,96 @@ def DEC():
     return False
 def O_STATIC():
     global i
+
     if(TS[i].getTokens()[0]=="AM" or  TS[i].getTokens()[0]=='o_static'):
         if(TS[i].getTokens()[1]=='static'):
             i=i+1
             return True
-    return False
+        return True
+    return True
 
 def FUNC_DEF():
     global i
-    if(TS[i].getTokens()[0]=="AM" or  TS[i].getTokens()[0]=='o_static'):
+
+    if(TS[i].getTokens()[0]=="AM" or  TS[i].getTokens()[0]=='o_static' or TS[i].getTokens()[0]=="DT"  or TS[i].getTokens()[0]=="ID" ):
+
         if(O_STATIC()):
+
+
             if(AM()):
-                if(DT()):
+               pass
+
+            if(DT()):
+
                     if(TS[i].getTokens()[0]=="ID"):
                         i=i+1
                         if(TS[i].getTokens()[0]=="("):
+
                             i=i+1
+
                             if(ARGS()):
+
+
                                 if(TS[i].getTokens()[0]==")"):
+
                                     i=i+1
-                                    if(TS[i].getTokens()[0]=="{"):
+
+                                if(TS[i].getTokens()[0]=="{"):
+
                                         i=i+1
+
                                         if(MST()):
+
+
                                             if(TS[i].getTokens()[0]=="}"):
                                                 i=i+1
+
                                                 return True
+
     return False
 
 
 def CLASS_BODY():
     global i
+
     if( TS[i].getTokens()[0]=='o_static'):
         if(TS[i].getTokens()[1]=='static'):
+
             i=i+1
+
             if(AM()):
+
                 if(DT()):
+
                     if(CLASS_BODY1()):
+
                         return True
+                    else:
+                        i=i-3
     elif(TS[i].getTokens()[0]=="AM"):
-        if(TS[i].getTokens()[1]=='public' or TS[i].getTokens()[1]=='private' or TS[i].getTokens()[1]=='protected'):
             i=i+1
             if(CLASS_BODY2()):
+
                 return True
-    elif(OBJ()):
-        if(CLASS_BODY()):
-            return True
-    elif(TS[i].getTokens()[0]=="AM" or TS[i].getTokens()[0]=="{"):
-        if(AM()):
-            if(TS[i].getTokens()[1]=="{"):
-                i=i+1
+            elif(TS[i].getTokens()[1]=='public'):
                 return True
+
+    elif(TS[i].getTokens()[0]=="DT"  or TS[i].getTokens()[0]=="ID" ):
+
+        if(DT()):
+
+            if(OBJ()):
+
+                if(CLASS_BODY()):
+                    return True
+            elif(CLASS_BODY2()):
+
+                return True
+
+
+    elif(TS[i].getTokens()[0]=="}"):
+                return True
+
     return False
 
 
@@ -925,37 +1253,64 @@ def S():
 
     if(TS[i].getTokens()[0]=="AM" or  TS[i].getTokens()[0]=='class'):
 
-        if(defs()):
+        if(defs() or TS[i].getTokens()[0]=='AM'):
 
-
-            if(INH()):
-
-                if(TS[i].getTokens()[0]=='{'):
-
+            if(TS[i].getTokens()[1]=='public'):
+                i=i+1
+                if(TS[i].getTokens()[0]=='class'):
                     i=i+1
-                    if(CLASS_BODY()):
-                        if(TS[i].getTokens()[1]=='public'):
+                    if(TS[i].getTokens()[1]=='Main'):
+
+                        i=i+1
+                        if(TS[i].getTokens()[0]=='('):
                             i=i+1
-                            if(TS[i].getTokens()[1]=='static'):
+                            if(TS[i].getTokens()[0]==')'):
                                 i=i+1
-                                if(TS[i].getTokens()[1]=='void'):
-                                    i=i+1
-                                    if(TS[i].getTokens()[1]=='main'):
+
+                                if(INH() or TS[i].getTokens()[0]=='{'):
+
+                                    if(TS[i].getTokens()[0]=='{'):
                                         i=i+1
-                                        if(TS[i].getTokens()[1]=='('):
-                                            i=i+1
-                                            if(TS[i].getTokens()[1]==')'):
+                                        if(CLASS_BODY() or TS[i].getTokens()[1]=='static'):
+
+                                            if(TS[i].getTokens()[1]=='static'):
                                                 i=i+1
-                                                if(TS[i].getTokens()[1]=='{'):
+
+                                                if(TS[i].getTokens()[1]=='public'):
                                                     i=i+1
-                                                    if(MST()):
-                                                        if(TS[i].getTokens()[1]=='}'):
+                                                    if(TS[i].getTokens()[1]=='void'):
+                                                        i=i+1
+                                                        if(TS[i].getTokens()[1]=='main'):
                                                             i=i+1
-                                                            if(CLASS_BODY()):
-                                                                if(TS[i].getTokens()[1]=='}'):
-                                                                    i=i=1
-                                                                    if(defs()):
-                                                                        return True
+
+                                                            if(TS[i].getTokens()[1]=='('):
+                                                                i=i+1
+                                                                if(TS[i].getTokens()[1]==')'):
+                                                                    i=i+1
+                                                                    if(TS[i].getTokens()[1]=='{'):
+                                                                        i=i+1
+
+                                                                        if(MST()):
+
+
+                                                                            if(TS[i].getTokens()[1]=='}'):
+                                                                                i=i+1
+
+
+                                                                                if(CLASS_BODY()):
+
+                                                                                    if(TS[i].getTokens()[1]=='}'):
+
+                                                                                        i=i+1
+
+
+                                                                                        if(defs()):
+
+
+                                                                                           return True
+
+
+
     return False
 
 
@@ -964,18 +1319,21 @@ def S():
 def SA(TS=[]):
     global i
     if(S()):
+
         if(TS[i].getTokens()[1]=='$'):
             return True
-        else:
-            print("Invalid Syntax at line number",TS[i].getTokens()[2])
-    return '2'
+
+
+    print("Invalid Syntax at line number", TS[i].getTokens()[2])
+
 def main():
     global TS
     TS=CC1.main()
     if((TS[-1].getTokens()[1])=='$'):
         print("Successfully Parsed")
     S=SA(TS)
-    print(S)
+    if(S):
+        print("Syntax Analyzer Completed Successfully")
 main()
 
 

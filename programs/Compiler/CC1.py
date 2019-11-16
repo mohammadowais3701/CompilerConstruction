@@ -294,9 +294,9 @@ fw = open("Token.txt", "w")
 i = 0
 line = 1
 k = 0
-KW = {"DT": ["int", "char", "float", "boolean"], "break": ["break"], "skip": ["skip"], "if": ["if"],
+KW = {"DT": ["int", "char", "float", "boolean","void"], "break": ["break"], "skip": ["skip"], "if": ["if"],
       "elif": ["elif"], "else": ["else"], "floop": ["floop"], "wloop": ["wloop"], "return": ["return"],
-      "class": ["class"], "abstract": ["abstract"], "final": ["final"], "o_static": ["static"], "this": ["this"], "super":["super"],
+      "class": ["class"], "abstract": ["abstract"], "final": ["final"], "o_static": ["static"], "this": ["this"], "super":["super"],"main":["main"],
       "AM": ["private", "public","protected"],"new":["new"]}
 PUN = {":": [":"], "{": ["{"], "}": ["}"], "(": ["("], ")": [")"], ".": ["."], ";": [";"], "[": ["["], "]": ["]"],",":[","]}
 OPR = {"PM": ["+", "-"], "MDM": [ "*", "/", "%"]  ,"AOP": ["="], "ROP": ["!=", "<=", ">=", "<", ">", "=="],

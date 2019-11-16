@@ -1,6 +1,11 @@
-public class A : B{
-int a ;
-int fn(){
-a=2;
+public class Main(){
+
+static public void main(){
+int a=3;
+fn();
 }
+void ma(int a, int[][] c,float d){
+string f, b,c,d;
+}
+
 }

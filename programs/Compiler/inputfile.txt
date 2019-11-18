@@ -1,12 +1,41 @@
+class A : B{
+int a,b;
+A(int a, float b, char[][] d){
+
+this();
+
+this.fn();
+this.a=2;
+}
+
+public a fn()
+{
+
+
+char ch=2;
+this.fn();
+super.myfun();
+}
+
+public a fn()
+{}
+public a fn(int a,int b)
+{}
+}
 public class Main(){
 
 
 static public void main(){
- arr[3]=3.3;
-fn(a,5,45-d);
+
+fn(a.b,j.fn1(),m.n);
+fnnn(fn9().k,d[2].fn10(),h[3][i].k);
+fun1(r[3][6]);
 int d=new A(3,3);
 a[3]=l+3*3-w;
 
+
+this.fn();
+this.a=2;
 i++;
  wloop(i<2){
  n=m;
@@ -16,24 +45,17 @@ if(a==b){
  j=3;
 
 }
-}void ma(int a, int[][] c,float d){
+}
+void ma(int[] a, int[][] c,float d){
 string f, b,df;
 }
 }
+
 public class A : B{
 int a,b;
-public a fn()
-{
-char ch;
-}
 
-public a fn()
-{}
-
-public a fn()
-{}
 }
-public class A {
+public class B {
 int a,b;
 
 public a fn()
@@ -44,8 +66,5 @@ public a fn()
 
 public a fn()
 {}
-
-}public class A : B{
-int a,b;
 
 }

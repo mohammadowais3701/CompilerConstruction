@@ -1,8 +1,48 @@
+int d=new A();
+ fn();
+i++;
+ wloop(i<2){
+ n=m;
+ }
+floop(i=0;i<2;i++){
+q=2;
+}
+if(a==b){
+ j=3;
 
+}
+if(a==c){
+ k=3;
+
+ }
+
+
+ elif(c==d){
+ i=2;
+ }
+ if(a==c){
+ k=3;
+
+ }
+ else{
+ k=9;
+ }
+ if(a==c){
+ k=3;
+
+ }
+
+}
+void ma(int a, int[][] c,float d){
+string f, b,df;
+}
+}
 public class A : B{
 int a,b;
 public a fn()
-{}
+{
+char ch;
+}
 
 public a fn()
 {}
@@ -12,6 +52,7 @@ public a fn()
 }
 public class A {
 int a,b;
+
 public a fn()
 {}
 
@@ -24,4 +65,3 @@ public a fn()
 }public class A : B{
 int a,b;
 
-}

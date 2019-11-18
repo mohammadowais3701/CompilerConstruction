@@ -1,11 +1,51 @@
 public class Main(){
 
+
 static public void main(){
-int a=3;
-fn();
+ arr[3]=3.3;
+fn(a,5,45-d);
+int d=new A(3,3);
+a[3]=l+3*3-w;
+
+i++;
+ wloop(i<2){
+ n=m;
+ }
+
+if(a==b){
+ j=3;
+
 }
-void ma(int a, int[][] c,float d){
-string f, b,c,d;
+}void ma(int a, int[][] c,float d){
+string f, b,df;
 }
+}
+public class A : B{
+int a,b;
+public a fn()
+{
+char ch;
+}
+
+public a fn()
+{}
+
+public a fn()
+{}
+}
+public class A {
+int a,b;
+
+public a fn()
+{}
+
+public a fn()
+{}
+
+public a fn()
+{}
+
+}public class A : B{
+int a,b;
 
 }

@@ -5,7 +5,7 @@ def stringConst(string):
    strconst=re.match("\A\"(([A-Z]|[a-z]|[0-9])*|([^A-Z]|[^a-z]|[^0-9])*)\"$",string)
 
    if strconst:
-       return "string_const"
+       return "string"
    else:
         CP=charConstant(string)
         return CP
@@ -23,7 +23,7 @@ def charConstant(string):
     chconst=re.match("\A\'((([a-z]|[A-Z])|([^0-9]|[^A-Z]|[^a-z]))|\(([a-z]|[A-Z])|('|\"|\\)))\'$",string)
     if chconst:
        
-        return "char Constant"
+        return "char"
     else:
         CP=floatConst(string)
         return CP
@@ -31,7 +31,7 @@ def charConstant(string):
 def floatConst(string):
     fconst= re.match("\A(\+|-|^)(([0-9]*.[0-9]+)$)",string)
     if fconst:
-        return "float_const"
+        return "float"
     else:
         CP=integerConstant(string)
         return CP
@@ -41,7 +41,7 @@ def integerConstant(string):
     IntConst = re.match("(\A(\+|-|^))([0-9])+$",string)
     if IntConst:
          
-         return "integer_const"
+         return "int"
     else:
          return ""
     

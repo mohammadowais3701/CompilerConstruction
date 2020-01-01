@@ -1,14 +1,18 @@
- class A : B{
-int a,b;
+ class A {
+char d,f;
 
 }
-public class Main(){
+public class Main():A{
 
 
 static public void main(){
-b.d().a[0].n.fn=a.fn1().l.fn().gn().arr;
+A b=new A();
+string m="10";
+m=2+8*4/9+3+"2";
 
-b.a[3]=3;
+b.d='2';
+
+m="abc";
 
 int [6][8]a=new int();
 
@@ -52,7 +56,7 @@ public a fn()
 }
 
 
-class A : B{
+class K : A{
 int a,b;
 
 A(int a, float b, char[][] d){

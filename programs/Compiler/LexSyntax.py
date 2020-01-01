@@ -1722,6 +1722,6 @@ def main():
     S=SA(TS)
     if(S):
         print("Syntax Analyzer Completed Successfully")
-main()
+    return TS
 
 

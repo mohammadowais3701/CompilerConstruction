@@ -215,13 +215,21 @@ def insertST(Name, Type, Scope):
         mask = ScopeTable['Name'] == Name
 
         df = ScopeTable[mask]['Scope']
+        try:
+            if(Scope==df[0]):
 
-        if(Scope==df[0]):
+                return False
+            else:
+                ScopeTable = ScopeTable.append(pd.DataFrame({'Name': [Name], 'Type': [Type], 'Scope': [Scope]}),ignore_index='True')
+                return True
+        except:
+            if (Scope == df[1]):
 
-            return False
-        else:
-            ScopeTable = ScopeTable.append(pd.DataFrame({'Name': [Name], 'Type': [Type], 'Scope': [Scope]}),ignore_index='True')
-            return True
+                return False
+            else:
+                ScopeTable = ScopeTable.append(pd.DataFrame({'Name': [Name], 'Type': [Type], 'Scope': [Scope]}),ignore_index='True')
+                return True
+
 
 
     else:
@@ -598,6 +606,27 @@ def P22():
 def DT2():
     global i
     if (TS[i].getTokens()[0] == 'DT' or TS[i].getTokens()[0] == 'ID'):
+        if (len(Types) != 0):
+            if (Types[0] == TS[i].getTokens()[1]):
+                pass
+            else:
+
+                if (TS[i].getTokens()[1] in ClassTable['Name'].values):
+
+                    mask = ClassTable['Name'] == TS[i].getTokens()[1]
+
+                    df = ClassTable[mask]['Parent']
+
+                    if (Types[0] in df[0].Classreftable['Name'].values):
+                        pass
+                    else:
+                        print('Type Mismatch in object declaration')
+                        return False
+                else:
+                    print('Type Mismatch in object declaration')
+                    return False
+        else:
+            Types.append(TS[i].getTokens()[1])
         i = i + 1
         return True
     return False
@@ -646,6 +675,7 @@ def DT():
 
         if(len(Types)!=0):
             if(Types[0]==TS[i].getTokens()[1]):
+
                 pass
             else:
 
@@ -806,9 +836,8 @@ def SST11():
     global i
 
 
-    if TS[i].getTokens()[0] == 'ID' or regex.charConstant(TS[i].getTokens()[1]) == "char" or regex.stringConst(
-            TS[i].getTokens()[1]) == "string" or regex.integerConstant(
-            TS[i].getTokens()[1]) == 'int' or regex.floatConst(TS[i].getTokens()[1]) == "float" or \
+    if TS[i].getTokens()[0] == 'ID' or regex.charConstant(TS[i].getTokens()[1]) == "char" or regex.integerConstant(
+            TS[i].getTokens()[1]) == 'int' or  \
             TS[i].getTokens()[0] == 'INC/DEC' or TS[i].getTokens()[0] == '(' or TS[i].getTokens()[0] == 'not' or \
             TS[i].getTokens()[0] == 'this' or TS[i].getTokens()[0] == 'super':
 
@@ -820,7 +849,16 @@ def SST11():
                 if (OPT()):
 
                     if (OPT3()):
-                        return True
+
+                        k = insertST(N, Types[0], CS)
+
+                        if (k):
+
+                            return True
+                        else:
+                            print('Redeclaration of ' + N)
+                            return False
+
     elif (TS[i].getTokens()[0] == ']'):
         i = i + 1
         if (SST13()):
@@ -904,8 +942,9 @@ def SST10():
 
 def OPT3():
     global i
-
+    global N
     if (TS[i].getTokens()[0] == 'ID'):
+        N=TS[i].getTokens()[1]
         i = i + 1
 
         if (OPT2()):
@@ -1033,6 +1072,8 @@ def SST2():
         if (SST11()):
 
             if (TS[i].getTokens()[0] == ';'):
+                Types.clear()
+                Opr.clear()
                 i = i + 1
                 return True
     elif (TS[i].getTokens()[0] == 'ID'):
